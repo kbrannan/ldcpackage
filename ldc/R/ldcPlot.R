@@ -10,6 +10,7 @@
 #'@param ldc.crit, list of 2 containing $ldc.max (Date, flow, vol.day, flow.exceed, load.day);
 #'$ldc.gmn (flow.exceed, Vol.day, load.day)
 #'@param y.lims, initial LDC limits [c(1e+15,1E-05)]
+#'@
 #'@return  Load Duration Curve plot
 #'@export
 #'
