@@ -6,8 +6,6 @@
 #'geomns: dataframe which includes flow exceedance, vol/day, concentration, N, digression and reduction, and flow zone description
 #'summary.geomns: summary of geomns dataframe, including N, Digressions, Max reduction, Max reduction flows, and max reduction concentration
 #'
-#'
-#'
 #'@param df.stn.ecoli, dataframe: bacteria data for indivdual station-- c('Date', 'value')
 #'@param df.stn.flow, dataframe: flow data for individual station-- c('date', 'value', 'flow.exceed')
 #'@return list containing four dataframes: points, summary.points, gemomns, and summary.geomns
