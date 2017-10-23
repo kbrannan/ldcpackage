@@ -1,6 +1,6 @@
-#'Scatter Plot
+#'Scatter Bacteria Time Series Plot
 #'
-#'This function will create a scatter plot
+#'This function will create a scatter plot of bacteria data over time
 #'
 #'@param ldc, list of 4 containing $points (Date, ecoli, digression, reduction, flow, Vol.day, flow.exceed, flow.zone, and load.day);
 #'$summary.points (N, Digressions, Max.Reduction, Max.Reduction.FLZ, Max.Reduction.flow.exceed, Max.Reduction.ecoli);
@@ -9,11 +9,12 @@
 #'@param ldc.crit, list of 2 containing $ldc.max (Date, flow, vol.day, flow.exceed, load.day);
 #'$ldc.gmn (flow.exceed, Vol.day, load.day)
 #'@param est.flow, dataframe including date, value, flow.exceed
-#'@return load duration curve scatter plot
+#'@param plot.fn, filepath for the scatterplot to be saved in. Default is NULL.
+#'@return bacteria time series scatter plot
 #'@export
 #'
 
-scatter.bacteria.flow.ts.plot <- function(ldc,
+scatterBacteriaTSPlot <- function(ldc,
                                           ldc.crit,
                                           est.flow,
                                           plot.fn=NULL) {

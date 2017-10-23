@@ -12,8 +12,9 @@
 #'@export
 #'
 
-ldcCalc <- function(df.stn.ecoli, df.stn.flow) {
-    ### PLEASE DOCUMNET ME!!!!
+ldcCalc <- function(df.stn.ecoli,
+                    df.stn.flow) {
+    ### PLEASE Document ME!!!!
 
   ## criteria concentrations
   gmn.crit <- 126
