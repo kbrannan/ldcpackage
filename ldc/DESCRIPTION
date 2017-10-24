@@ -1,0 +1,10 @@
+Package: ldc
+Type: Package
+Title: Load Duration Curves 
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: This package aids in the development of load duration curves for water quality, through data aquisition and plot creation
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
