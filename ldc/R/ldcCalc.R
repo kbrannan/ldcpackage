@@ -16,16 +16,17 @@ ldcCalc <- function(df.stn.ecoli,
                     df.stn.flow) {
     ### PLEASE Document ME!!!!
 
+  requireNamespace('fdcCalc')
   ## criteria concentrations
   gmn.crit <- 126
   max.crit <- 406
 
-  flow.exceed <- function(v.flow) {
-    tmp.rank <- rank(v.flow, ties.method = "average")
-    tmp.exceed <- tmp.rank / length(v.flow)
-    tmp.exceed <- 100 * (1 - tmp.exceed)
-    return(tmp.exceed)
-  }
+  # flow.exceed <- function(v.flow) {
+  #   tmp.rank <- rank(v.flow, ties.method = "average")
+  #   tmp.exceed <- tmp.rank / length(v.flow)
+  #   tmp.exceed <- 100 * (1 - tmp.exceed)
+  #   return(tmp.exceed)
+  # }
   ## KMB 2017-06-05
   ## Chanaged the order of commands. Calculating the flow exceedance
   ## using all of the flow data. Previous version of function merged
