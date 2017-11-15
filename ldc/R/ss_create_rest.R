@@ -9,7 +9,7 @@ ss.create.rest <- function(x.loc = NULL,
                            includeflowtypes = "false",
                            includefeatures = "true",
                            simplify = "true") {
-  chr.REST <- paste0(ss.url, "/", ss.prefix, ".", response.format,
+  ss.REST.query <- paste0(ss.url, "/", ss.prefix, ".", response.format,
                      "?rcode=", rcode,
                      "&xlocation=", x.loc,
                      "&ylocation=", y.loc,
@@ -20,6 +20,6 @@ ss.create.rest <- function(x.loc = NULL,
                      "&simplify=", simplify
                      )
 
-  return(chr.REST)
+  return(ss.REST.query)
 }
 
