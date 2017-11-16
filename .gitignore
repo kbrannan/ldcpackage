@@ -32,3 +32,5 @@ vignettes/*.pdf
 *.utf8.md
 *.knit.md
 .Rproj.user
+# scratch files
+*scratch.R
