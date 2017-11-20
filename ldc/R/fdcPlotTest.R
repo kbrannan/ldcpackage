@@ -3,17 +3,25 @@
 ## Load functions
 source("//deqhq1/tmdl/TMDL_WR/MidCoast/Models/Bacteria/LDC/Calculations/Rscripts/LDC Functions.R")
 
-## flow.exceed = tmp.flow.est - Function
 
-flow.exceed <- function(v.flow) {
+## Run flow exceed function to calculate flow exceed values
+## I renamed flow.exceed to be tmp.exceed
+
+
+ tmp.exceed <- function(v.flow) {
   tmp.rank <- rank(v.flow, ties.method = "average")
   tmp.exceed <- tmp.rank / length(v.flow)
   tmp.exceed <- 100 * (1 - tmp.exceed)
   return(tmp.exceed)
 }
 
-## Use flow exceed function to calculate flow exceed
-tmp.exceed <- flow.exceed
+ v.flow <- df.flow$flow
+ 
+ tmp.exceed(v.flow)
+
+## Run fdc.ss.estimate to calculate stream stats 
+## fdc.ss.estimate <- function(ss.fn=NULL,ss.path="//deqhq1/tmdl/TMDL_WR/MidCoast/Data/Bacteria/StreamStatsData/",
+#                             Eq.Region=1)
 
 ## flow.est = flow values
 tmp.fdc.ss.estimate <- fdc.ss.estimate
@@ -22,7 +30,7 @@ tmp.fdc.ss.estimate <- fdc.ss.estimate
 
 
 ## path to write the figure
-fdc.plot.figure <- "//deqhq1/TMDL/TMDL_WR/Models/Bacteria/LDC/Bernadette-workspace/Figures"
+fdc.plot.figure <- "//deqhq1/TMDL/TMDL_WR/MidCoast/Models/Bacteria/LDC/Bernadette-workspace/figures"
 
 ## name of output figure file
 tmp.plot.fn <- "fdcPlot-test.png"
@@ -32,7 +40,7 @@ y.lim.fdc <- c(1e+15,1E-05)
 
 
 
-fdc.ss.est.flow.plot(flow.exceed=tmp.exceed,
+fdc.ss.est.flow.plot(flow.exceed=tmp.exceed(v.flow),
                      flow.est=df.flow$flow,
                      ss.est=tmp.fdc.ss.estimate,
                      plot.fn=fdc.plot.figure,
