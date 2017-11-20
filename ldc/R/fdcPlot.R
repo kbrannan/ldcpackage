@@ -3,9 +3,9 @@
 #' This function will output a flow duration curve plot for a single monitoring station
 #' 
 #' 
-#' @param flow.exceed, dataframe: flow data for individual station -c('date', 'value', 'flow.exceed')
+#' @param flow.exceed, calculated flow exceedance values for individual station
 #' 
-#' @param flow.est, dataframe: value data for individual station -c('date', 'value', 'flow.exceed')
+#' @param flow.est, dataframe: flow data for individual station -c('date', 'flow')
 #' 
 #' @param ss.est, dataframe which includes FDPercent, FDest, lower, and upper
 #'    
@@ -13,7 +13,7 @@
 #' 
 #' @param y.lims, initial FDC limits [c(1e-01, 1e+04)]
 #' @
-#' @return Flow Duration Curve
+#' @return Flow Duration Curve Plot
 #' @export 
 #' 
 
