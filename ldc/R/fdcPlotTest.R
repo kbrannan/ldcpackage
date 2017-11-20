@@ -19,21 +19,29 @@ source("//deqhq1/tmdl/TMDL_WR/MidCoast/Models/Bacteria/LDC/Calculations/Rscripts
  
  tmp.exceed(v.flow)
 
-## Run fdc.ss.estimate to calculate stream stats 
-## fdc.ss.estimate <- function(ss.fn=NULL,ss.path="//deqhq1/tmdl/TMDL_WR/MidCoast/Data/Bacteria/StreamStatsData/",
-#                             Eq.Region=1)
-
-## flow.est = flow values
+ 
+## ss.est = stream stats estimate - call funtion for this
+ 
+ # Define station to get stream stats from, make sure this xml file is in the folder at the end of the file path below
+tmp.ss.est.fn <- paste0("st",11476,".xml")   
+ 
+fdc.ss.estimate(ss.fn=tmp.ss.est.fn ,ss.path="//deqhq1/tmdl/TMDL_WR/MidCoast/Data/Bacteria/StreamStatsData/BacteriaStations/",
+                             Eq.Region=1)
+ 
+ 
 tmp.fdc.ss.estimate <- fdc.ss.estimate
 
-##ss.est = stream stats estimate - call funtion for this
 
 
 ## path to write the figure
-fdc.plot.figure <- "//deqhq1/TMDL/TMDL_WR/MidCoast/Models/Bacteria/LDC/Bernadette-workspace/figures"
+path.fdc.plot.figure <- "//deqhq1/TMDL/TMDL_WR/MidCoast/Models/Bacteria/LDC/Bernadette-workspace/figures"
 
 ## name of output figure file
 tmp.plot.fn <- "fdcPlot-test.png"
+
+## file for function
+fdc.plot.figure <- paste0(path.fdc.plot.figure, "/", tmp.plot.fn)
+
 
 ## define y.lims
 y.lim.fdc <- c(1e+15,1E-05)
@@ -42,10 +50,11 @@ y.lim.fdc <- c(1e+15,1E-05)
 
 fdc.ss.est.flow.plot(flow.exceed=tmp.exceed(v.flow),
                      flow.est=df.flow$flow,
-                     ss.est=tmp.fdc.ss.estimate,
+                     ss.est=fdc.ss.estimate(ss.fn=tmp.ss.est.fn ,ss.path="//deqhq1/tmdl/TMDL_WR/MidCoast/Data/Bacteria/StreamStatsData/BacteriaStations/",
+                                            Eq.Region=1),
                      plot.fn=fdc.plot.figure,
                      y.lims=y.lim.fdc) 
-  
+dev.off()  
   
   options(warn=-1)
   ## send plot to pdf file
