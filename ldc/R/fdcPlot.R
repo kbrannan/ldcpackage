@@ -3,11 +3,12 @@
 #' This function will output a flow duration curve plot for a single monitoring station
 #' 
 #' 
-#' @param flow.exceed, dataframe: flow data for individual station -c('date', 'value', 'flow.exceed')
+#' @param flow.exceed, calculated flow exceed values
 #' 
 #' @param flow.est, dataframe: value data for individual station -c('date', 'value', 'flow.exceed')
 #' 
-#' @param ss.est, dataframe which includes FDPercent, FDest, lower, and upper
+#' @param ss.est, dataframe: flow duration estimates based on Stream Stats XML file and ecoregion, 
+#'                includes FDPercent, FDest, lower, and upper
 #'    
 #' @param plot.fn, file path for the flow duration curve plot to be saved in
 #' 
@@ -16,10 +17,6 @@
 #' @return Flow Duration Curve
 #' @export 
 #' 
-
-## Estimate FDCs
-#tmp.ss.est.fn <- paste0("st",tmp.one.station,".xml")
-#tmp.fdc.ss.est <- fdc.ss.estimate(ss.fn=tmp.ss.est.fn, ss.path=get.path("StreamStatsBacteria"))
 
 
 fdc.ss.est.flow.plot <- function(flow.exceed=NULL,
