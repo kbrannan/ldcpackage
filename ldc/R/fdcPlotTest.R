@@ -1,31 +1,61 @@
-#' Flow Duration Curve Plot
-#'
-#' This function will output a flow duration curve plot for a single monitoring station
-#' 
-#' 
-#' @param flow.exceed, calculated flow exceed values
-#' 
-#' @param flow.est, dataframe: value data for individual station -c('date', 'value', 'flow.exceed')
-#' 
-#' @param ss.est, dataframe: flow duration estimates based on Stream Stats XML file and ecoregion, 
-#'                includes FDPercent, FDest, lower, and upper
-#'    
-#' @param plot.fn, file path for the flow duration curve plot to be saved in
-#' 
-#' @param y.lims, initial FDC limits [c(1e-01, 1e+04)]
-#' @
-#' @return Flow Duration Curve
-#' @export 
-#' 
+## fdcPlot TEST ##
+
+## Load functions
+source("//deqhq1/tmdl/TMDL_WR/MidCoast/Models/Bacteria/LDC/Calculations/Rscripts/LDC Functions.R")
 
 
-fdc.ss.est.flow.plot <- function(flow.exceed=NULL,
-                                 flow.est=NULL,
-                                 ss.est=NULL,
-                                 plot.fn=NULL,
-                                 y.lims=NULL) {
+## Run flow exceed function to calculate flow exceed values
+## I renamed flow.exceed to be tmp.exceed
 
 
+ tmp.exceed <- function(v.flow) {
+  tmp.rank <- rank(v.flow, ties.method = "average")
+  tmp.exceed <- tmp.rank / length(v.flow)
+  tmp.exceed <- 100 * (1 - tmp.exceed)
+  return(tmp.exceed)
+}
+
+ v.flow <- df.flow$flow
+ 
+ tmp.exceed(v.flow)
+
+ 
+## ss.est = stream stats estimate - call funtion for this
+ 
+ # Define station to get stream stats from, make sure this xml file is in the folder at the end of the file path below
+tmp.ss.est.fn <- paste0("st",11476,".xml")   
+ 
+fdc.ss.estimate(ss.fn=tmp.ss.est.fn ,ss.path="//deqhq1/tmdl/TMDL_WR/MidCoast/Data/Bacteria/StreamStatsData/BacteriaStations/",
+                             Eq.Region=1)
+ 
+ 
+tmp.fdc.ss.estimate <- fdc.ss.estimate
+
+
+
+## path to write the figure
+path.fdc.plot.figure <- "//deqhq1/TMDL/TMDL_WR/MidCoast/Models/Bacteria/LDC/Bernadette-workspace/figures"
+
+## name of output figure file
+tmp.plot.fn <- "fdcPlot-test.png"
+
+## file for function
+fdc.plot.figure <- paste0(path.fdc.plot.figure, "/", tmp.plot.fn)
+
+
+## define y.lims
+y.lim.fdc <- c(1e+15,1E-05)
+
+
+
+fdc.ss.est.flow.plot(flow.exceed=tmp.exceed(v.flow),
+                     flow.est=df.flow$flow,
+                     ss.est=fdc.ss.estimate(ss.fn=tmp.ss.est.fn ,ss.path="//deqhq1/tmdl/TMDL_WR/MidCoast/Data/Bacteria/StreamStatsData/BacteriaStations/",
+                                            Eq.Region=1),
+                     plot.fn=fdc.plot.figure,
+                     y.lims=y.lim.fdc) 
+dev.off()  
+  
   options(warn=-1)
   ## send plot to pdf file
   if(!is.null(plot.fn)) {
@@ -33,12 +63,12 @@ fdc.ss.est.flow.plot <- function(flow.exceed=NULL,
         width=11,heigh=8.5,onefile=FALSE,title="",
         paper="special", bg="white")
   }
-
+  
   ## Reorganize flow data into dataframe and then sort data on flow exceedance
   tmp.plot <- data.frame(x=flow.exceed,y=flow.est,
                          stringsAsFactors=FALSE)
   tmp.plot <- tmp.plot[order(tmp.plot$x),]
-
+  
   ## calculate the y-axis limit if they are not given
   if(is.null(y.lims) == TRUE) {
     y.lims <- c(10^floor(log10(min(tmp.plot$y))),
@@ -83,3 +113,7 @@ fdc.ss.est.flow.plot <- function(flow.exceed=NULL,
   }
   options(warn=0)
 }
+
+  
+png(filename= paste0(fdc.plot.figure,"/",tmp.plot.fn)
+    
