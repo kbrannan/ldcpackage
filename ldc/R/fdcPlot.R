@@ -7,7 +7,7 @@
 #' 
 #' @param flow.est, dataframe: flow data for individual station -c('date', 'flow')
 #' 
-#' @param ss.est, dataframe which includes FDPercent, FDest, lower, and upper
+#' @param ss.est, dataframe: stream stats data which includes FDPercent, FDest, lower, and upper
 #'    
 #' @param plot.fn, file path for the flow duration curve plot to be saved in
 #' 
