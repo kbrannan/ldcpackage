@@ -12,6 +12,12 @@
 #' @param plot.fn, file path for the flow duration curve plot to be saved in
 #' 
 #' @param y.lims, initial FDC limits [c(1e-01, 1e+04)]
+#' 
+#' @param x.px, width in pixels
+#' 
+#' @param y.px, height in pixels
+#' 
+#' @param pt.size, pointsize of plotted text        
 #' @
 #' @return Flow Duration Curve Plot
 #' @export 
@@ -26,15 +32,18 @@ fdc.ss.est.flow.plot <- function(flow.exceed=NULL,
                                  flow.est=NULL,
                                  ss.est=NULL,
                                  plot.fn=NULL,
-                                 y.lims=NULL) {
+                                 y.lims=NULL,
+                                 x.px=800,
+                                 y.px=500,
+                                 pt.size=15) {
 
 
   options(warn=-1)
   ## send plot to pdf file
   if(!is.null(plot.fn)) {
-    pdf(file=plot.fn,
-        width=11,heigh=8.5,onefile=FALSE,title="",
-        paper="special", bg="white")
+    png(file=plot.fn,
+        width=x.px,height=y.px, pointsize = pt.size,
+        bg="white")
   }
 
   ## Reorganize flow data into dataframe and then sort data on flow exceedance
@@ -81,7 +90,7 @@ fdc.ss.est.flow.plot <- function(flow.exceed=NULL,
           c(ss.est$upper[ii],ss.est$upper[ii]))
   }
   ## close device if plot sent to pdf file
-  if(names(dev.cur()) == "pdf") {
+  if(names(dev.cur()) == "png") {
     dev.off()
   }
   options(warn=0)
