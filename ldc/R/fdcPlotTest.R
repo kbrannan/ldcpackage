@@ -53,7 +53,10 @@ fdc.ss.est.flow.plot(flow.exceed=tmp.exceed(v.flow),
                      ss.est=fdc.ss.estimate(ss.fn=tmp.ss.est.fn ,ss.path="//deqhq1/tmdl/TMDL_WR/MidCoast/Data/Bacteria/StreamStatsData/BacteriaStations/",
                                             Eq.Region=1),
                      plot.fn=fdc.plot.figure,
-                     y.lims=y.lim.fdc) 
+                     y.lims=y.lim.fdc,
+                     x.px=800,
+                     y.px=500,
+                     pt.size=15) 
 dev.off()  
   
   options(warn=-1)
