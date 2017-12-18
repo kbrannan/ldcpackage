@@ -1,40 +1,45 @@
 #' Flow Duration Curve Plot
 #'
 #' This function will output a flow duration curve plot for a single monitoring station
-#' 
-#' 
-#' @param flow.exceed, dataframe: flow data for individual station -c('date', 'value', 'flow.exceed')
-#' 
-#' @param flow.est, dataframe: value data for individual station -c('date', 'value', 'flow.exceed')
-#' 
-#' @param ss.est, dataframe which includes FDPercent, FDest, lower, and upper
-#'    
+#'
+#'
+#' @param flow.exceed, calculated flow exceedance values for individual station
+#'
+#' @param flow.est, dataframe: flow data for individual station -c('date', 'flow')
+#'
+#' @param ss.est, dataframe: stream stats data which includes FDPercent, FDest, lower, and upper
+#'
 #' @param plot.fn, file path for the flow duration curve plot to be saved in
-#' 
+#'
 #' @param y.lims, initial FDC limits [c(1e-01, 1e+04)]
+#'
+#' @param x.px, width in pixels
+#'
+#' @param y.px, height in pixels
+#'
+#' @param pt.size, pointsize of plotted text
 #' @
-#' @return Flow Duration Curve
-#' @export 
-#' 
-
-## Estimate FDCs
-#tmp.ss.est.fn <- paste0("st",tmp.one.station,".xml")
-#tmp.fdc.ss.est <- fdc.ss.estimate(ss.fn=tmp.ss.est.fn, ss.path=get.path("StreamStatsBacteria"))
+#' @return Flow Duration Curve Plot
+#' @export
+#'
 
 
 fdc.ss.est.flow.plot <- function(flow.exceed=NULL,
                                  flow.est=NULL,
                                  ss.est=NULL,
                                  plot.fn=NULL,
-                                 y.lims=NULL) {
+                                 y.lims=NULL,
+                                 x.px=900,
+                                 y.px=750,
+                                 pt.size=17) {
 
 
   options(warn=-1)
   ## send plot to pdf file
   if(!is.null(plot.fn)) {
-    pdf(file=plot.fn,
-        width=11,heigh=8.5,onefile=FALSE,title="",
-        paper="special", bg="white")
+    png(file=plot.fn,
+        width=x.px,height=y.px, pointsize = pt.size,
+        bg="white")
   }
 
   ## Reorganize flow data into dataframe and then sort data on flow exceedance
@@ -81,7 +86,7 @@ fdc.ss.est.flow.plot <- function(flow.exceed=NULL,
           c(ss.est$upper[ii],ss.est$upper[ii]))
   }
   ## close device if plot sent to pdf file
-  if(names(dev.cur()) == "pdf") {
+  if(names(dev.cur()) == "png") {
     dev.off()
   }
   options(warn=0)
