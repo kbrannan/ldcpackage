@@ -29,9 +29,9 @@ fdc.ss.est.flow.plot <- function(flow.exceed=NULL,
                                  ss.est=NULL,
                                  plot.fn=NULL,
                                  y.lims=NULL,
-                                 x.px=800,
-                                 y.px=500,
-                                 pt.size=15) {
+                                 x.px=900,
+                                 y.px=750,
+                                 pt.size=17) {
 
 
   options(warn=-1)
