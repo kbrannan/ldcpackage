@@ -1,0 +1,23 @@
+Station ID 14306030
+Name:	YAQUINA R NR CHITWOOD, OR
+Operator:	OWRD		Status:	Near Real Time	Drainage Area:	71 sqmi
+
+Latitude:	44° 39' 26.629?		Longitude:	-123° 50' 19.5?	  Datum:	NAD83
+            44.65739694444444               -123.83875
+			44.6574                         -123.8388    (round to 4 decimal places)
+			
+
+
+{"workspaceID":"OR20171115150809716000","featurecollection":[{"name":"globalwatershedpoint","feature":{"type":"FeatureCollection","crs":{"type":"ESPG","properties":{"code":26910}},"features":[]}}],"messages":[]}
+
+			
+			
+https://streamstatsags.cr.usgs.gov/streamstatsservices/watershed.geojson?rcode=OR&xlocation=-123.83875&ylocation=44.65739694444444&crs=26910&includeparameters=false&includeflowtypes=false&includefeatures=true&simplify=true
+https://streamstatsags.cr.usgs.gov/streamstatsservices/watershed.geojson?rcode=OR&xlocation=-123.83875&ylocation=44.65739694444444&crs=26910&includeparameters=false&includeflowtypes=false&includefeatures=true&simplify=true
+
+
+
+https://streamstatsags.cr.usgs.gov/streamstatsservices/download?workspaceID=OR20171115164045106000&format=SHAPE
+https://streamstatsags.cr.usgs.gov/streamstatsservices/download?workspaceID=OR20171115164045106000&format=SHAPE
+
+https://streamstatsags.cr.usgs.gov/streamstatsservices/watershed.geojson?rcode=OR&xlocation=-123.83875&ylocation=44.6573969444444&crs=26910&includeparameters=false&includeflowtypes=false&includefeatures=true&simplify=true
